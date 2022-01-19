@@ -1,0 +1,7 @@
+INSTRUÇÕES PARA FILTRO LINKEDIN - AUTOMATIZAÇÃO COM PYTHON
+
+>> AUTOMATIZAÇÃO DO PROCESSO
+Passo 1 - Abra o prompt de comando, copie e cole o seguinte:cd "C:\Users\Microsoft\Documents\GitHub\AutomacaoICP-LN"
+Passo 2 - Copie e cole o seguinte:python AutomacaoICP-LN.py
+Passo 3 - Aguarde aparecer a mensagem de que o filtro foi concluído. Após aparecer a mensagem, não se esqueça de adicionar os campos especificados na categoria Tipo de Empresa.
+
