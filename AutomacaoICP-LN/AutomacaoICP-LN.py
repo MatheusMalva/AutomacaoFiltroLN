@@ -95,7 +95,8 @@ df["Departamento"] = ICPdepartamento["DEPARTAMENTO"]
 
 
 
-
+ICPestado["ESTADO"] = ICPestado["ESTADO"].replace(" - SP", ", SÃO PAULO", regex=True)
+ICPestado["ESTADO"] = ICPestado["ESTADO"].replace(" - MG", ", MINAS GERAIS", regex=True)
 
 # correção ortográfica dos segmentos
 ICPsegmento["SEGMENTO"] = ICPsegmento["SEGMENTO"].replace(['ADMINISTRACAO AGRICOLA'],['Administração agrícola'])
@@ -207,32 +208,31 @@ driver.get("https://www.linkedin.com/login/pt")
 elem = driver.find_element_by_xpath('//*[@id="username"]')
 
     # Escrevendo na caixa de usuário do LinkedIn
-elem.send_keys(str("rhavimoreira@yahoo.com.br"))
+elem.send_keys(str("inteligencia@grupoescalar.com.br"))  #hugojoseamaral@hotmail.com #rhavimoreira@yahoo.com.br
  
     # elemento HTML de senha do Linkedin
 elem1 = driver.find_element_by_xpath('//*[@id="password"]')
     
     # Escrevendo na caixa de senha do LinkedIn
-elem1.send_keys(str("Escalar@2021!"))
+elem1.send_keys(str("Escalar@2021!")) #hugo7466 #Escalar@2021!
     
     # Clicando no elemento para fazer o Log IN
 elem1.submit()
 
 
 # Acessando o SALES NAVIGATOR no navegador 
-driver.get("https://www.linkedin.com/sales/search/people")
+driver.get("https://www.linkedin.com/sales/search/people?viewAllFilters=true")
 
-time.sleep(3)
+time.sleep(3) 
 
-    
 # elemento HTML de “Localidade”
-elem4 = driver.find_element_by_xpath('//*[@id="ember65"]/div/div')
+elem4 = driver.find_element_by_xpath('//*[@id="ember155"]/div/button')
 
 # Clicando no elemento para Localidade
 elem4.click()
 
 #Elemento de texto (para permitir a escrita na caixa de texto - repete)
-elem5 = driver.find_element_by_xpath('//*[@id="ember64-typeahead-region"]')
+elem5 = driver.find_element_by_xpath('//*[@id="ember154-typeahead-region"]')
 
 # Clicando na caixa de texto
 elem5.click()
@@ -244,8 +244,8 @@ while i < len(ICPestado["ESTADO"]):
 
     elem5.send_keys(str(ICPestado["ESTADO"][i])) 
     time.sleep(2)
-# achando o nome do estado pesquisado
-    elem6 = driver.find_element_by_xpath('//*[@id="ember64"]/div[3]/ol/li[1]/button')
+# achando o nome do estado pesquisado 
+    elem6 = driver.find_element_by_xpath('//*[@id="ember154"]/div[3]/ol/li[1]/button')
 # clicando no nome encontrado
     elem6.click()
 # Somando ao contador
@@ -254,14 +254,14 @@ while i < len(ICPestado["ESTADO"]):
 
         
 # elemento HTML de “Segmento”
-elem7 = driver.find_element_by_xpath('//*[@id="ember82"]/div/button')
+elem7 = driver.find_element_by_xpath('//*[@id="ember166"]/div/button')
 
 # Clicando no elemento para Segmento
 elem7.click()
 
 #Elemento de texto (para permitir a escrita na caixa de texto - repete)
-elem8 = driver.find_element_by_class_name("text-input--no-border")
 
+elem8 = driver.find_element_by_xpath('//*[@id="ember165-typeahead"]')
 # Clicando na caixa de texto
 elem8.click()
 time.sleep(3)
@@ -272,14 +272,16 @@ while i < len(ICPsegmento["SEGMENTO"]):
     elem8.send_keys(str(ICPsegmento["SEGMENTO"][i]).lower())
     time.sleep(2)
 # achando o SEGMENTO pesquisado
-    elem9 = driver.find_element_by_xpath('//*[@id="ember81"]/div[3]/ol/li/button') #font-weight-400
+    elem9 = driver.find_element_by_xpath('//*[@id="ember165"]/div[3]/ol/li[1]/button') #font-weight-400
+    time.sleep(1)
 # clicando no nome encontrado
     elem9.click()
+    time.sleep(1)
 # Somando ao contador
     i+=1
 
 # elemento HTML de “Porte”
-elem10 = driver.find_element_by_xpath('//*[@id="ember87"]/div/button')
+elem10 = driver.find_element_by_xpath('//*[@id="ember226"]/div')
 
 # Clicando no elemento para Segmento
 elem10.click()  
@@ -292,7 +294,7 @@ print(len(ICPporte["PORTE"]))
 while j > -1:
     
     if ICPporte["PORTE"][j] == "10001+": # 1o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[9]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[9]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
@@ -300,7 +302,7 @@ while j > -1:
         time.sleep(3)   
         
     elif ICPporte["PORTE"][j] == "5001-10000": # 2o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[8]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[8]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
@@ -308,7 +310,7 @@ while j > -1:
         time.sleep(3)  
 
     elif ICPporte["PORTE"][j] == "1001-5000": # 3o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[7]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[7]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
@@ -316,35 +318,35 @@ while j > -1:
         time.sleep(3)
         
     elif ICPporte["PORTE"][j] == "501-1000": # 4o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[6]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[6]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
         j-=1
         time.sleep(3)
     elif ICPporte["PORTE"][j] == "201-500": # 5o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[5]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[5]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
         j-=1
         time.sleep(3)
     elif ICPporte["PORTE"][j] == "51-200": # 6o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[4]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[4]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
         j-=1
         time.sleep(3)
     elif ICPporte["PORTE"][j] == "11-50": # 7o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[3]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[3]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
         j-=1
         time.sleep(3)
     elif ICPporte["PORTE"][j] == "1-10": # 8o Porte
-        elem11 = driver.find_element_by_xpath('//*[@id="ember86"]/div[3]/ol/li[2]/button')
+        elem11 = driver.find_element_by_xpath('//*[@id="ember225"]/div[3]/ol/li[2]/button')
         elem11.click() 
         print(j)
         print(ICPporte["PORTE"][j])
@@ -355,16 +357,15 @@ while j > -1:
 
 
 
-
 # elemento HTML de “Cargo”
-elem13 = driver.find_element_by_xpath('//*[@id="ember102"]/div/button')
+elem13 = driver.find_element_by_xpath('//*[@id="ember209"]/div/button')
 
 # Clicando no elemento para Cargo
 elem13.click()
 
 
 #Elemento de texto (para permitir a escrita na caixa de texto - repete)
-elem14 = driver.find_element_by_xpath('//*[@id="ember101-typeahead"]')
+elem14 = driver.find_element_by_xpath('//*[@id="ember208-typeahead"]')
 
 # Clicando na caixa de texto
 elem14.click()
@@ -378,13 +379,18 @@ while i < len(ICPcargo["CARGO"]):
     j=0
     while j < len(ICPdepartamento["DEPARTAMENTO"]):
     # Escrevendo o nome cargo + departamento de forma concatenada
+        #time.sleep(3)
         elem14.send_keys(str(ICPcargo["CARGO"][i].lower()) + ' ' + str(ICPdepartamento["DEPARTAMENTO"][j]).lower())
+        time.sleep(3)
     # apertando enter
+        
         keyboard = Controller()
+        
         keyboard.press(Key.enter)
         time.sleep(3)
 
         keyboard.release(Key.enter)
+        
         print(ICPcargo["CARGO"][i] +" "+ ICPdepartamento["DEPARTAMENTO"][j])
         print(j)
         print(i)
@@ -505,7 +511,7 @@ ICPdepartamento["DEPARTAMENTO"] = ICPdepartamento["DEPARTAMENTO"].replace(['VEND
 
 
 #Elemento de texto (para permitir a escrita na caixa de texto - repete)
-elem14 = driver.find_element_by_xpath('//*[@id="ember101-typeahead"]')
+elem14 = driver.find_element_by_xpath('//*[@id="ember208-typeahead"]')
 
 # Clicando na caixa de texto
 elem14.click()
@@ -520,6 +526,7 @@ while i < len(ICPdepartamento["DEPARTAMENTO"]):
     while j < len(ICPcargo["CARGO"]):
     # Escrevendo o nome cargo + departamento traduzidos de forma concatenada
         elem14.send_keys(str(ICPdepartamento["DEPARTAMENTO"][i].lower()) + ' ' + str(ICPcargo["CARGO"][j]).lower())
+        time.sleep(3)
     # apertando enter
         keyboard = Controller()
         keyboard.press(Key.enter)
@@ -534,16 +541,44 @@ while i < len(ICPdepartamento["DEPARTAMENTO"]):
     i+=2
 
 
-# elemento HTML todos os filtros
+# elemento HTML tipo de empresa
 
-elem14a = driver.find_element_by_xpath('//*[@id="ember46"]/li[13]/button')
+elem15 = driver.find_element_by_xpath('//*[@id="ember231"]/div')
 
-# clicando em todos os filtros
+# clicando em tipo de empresa
 
-elem14a.click()
+elem15.click()
 
-print("Filtro de ICP pronto. Abra o navegador para visualizar. Não Esqueca de inserir o tipo de Empresa.")
-print("Empresa de capital aberto")
-print("Empresa privada")
-print("Sociedade")
-print("Proprietário único")
+# elemento HTML Empresa de Capital aberto
+elem16 = driver.find_element_by_xpath('//*[@id="ember230"]/div[3]/ol/li[1]/button')
+
+# clicando em Empresa de Capital aberto
+
+elem16.click()
+
+# elemento HTML Empresa Privada
+elem17 = driver.find_element_by_xpath('//*[@id="ember230"]/div[3]/ol/li[1]/button')
+
+# clicando em Empresa Privada
+
+elem17.click()
+
+# elemento HTML Sociedade
+elem18 = driver.find_element_by_xpath('//*[@id="ember230"]/div[3]/ol/li[3]/button')
+
+# clicando em Sociedade
+
+elem18.click()
+
+# elemento HTML Proprietário Único
+elem19 = driver.find_element_by_xpath('//*[@id="ember230"]/div[3]/ol/li[4]/button')
+
+# clicando em Proprietário Único
+
+elem19.click()
+
+print("Filtro de ICP pronto. Abra o navegador para visualizar.") #Não Esqueca de inserir o tipo de Empresa.
+#print("Empresa de capital aberto")
+#print("Empresa privada")
+#print("Sociedade")
+#print("Proprietário único")
